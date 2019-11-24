@@ -1,6 +1,8 @@
+// An initialization file
+
 <?php
 
-//Start session if not started yet
+//Start a session if not started yet
 
 if (!isset($_SESSION)) {
     session_start();
