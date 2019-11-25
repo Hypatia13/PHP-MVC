@@ -1,0 +1,17 @@
+# A module 'mod_rewrite' has to be enabled in 'MAMP/conf/apache/httpd.conf'(apache conf file)
+# Check it by placing 'var_dump(in_array('mod_rewrite', apache_get_modules()));' in index.php
+
+#Turn on Rewrite engine -> rewrites URLs
+RewriteEngine on
+
+#Rewrite only if a request is not an actual file
+RewriteCond %{REQUEST_FILENAME} !-f
+
+#The RewriteCondition has to be satisfied first
+# '.' -> redirect all requests to 'index.php'
+# [L] -> 'L' option means that this is the last rule this condition will match
+RewriteRule . index.php[L]
+
+#More at apache.org
+
+
