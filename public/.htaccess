@@ -10,7 +10,7 @@ RewriteCond %{REQUEST_FILENAME} !-f
 #The RewriteCondition has to be satisfied first
 # '.' -> redirect all requests to 'index.php'
 # [L] -> 'L' option means that this is the last rule this condition will match
-RewriteRule . index.php[L]
+RewriteRule . index.php [L]
 
 #More at apache.org
 
