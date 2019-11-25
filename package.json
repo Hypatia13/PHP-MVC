@@ -5,7 +5,7 @@
   "description": "PHP MVC Project - E-commerce Store",
   "private": true,
   "dependencies": {
-    "gulp":"4.0.2",
-    "laravel-elixir":"6.0.0-18"
+    "gulp": "3.9.1",
+    "laravel-elixir": "6.0.0-18"
   }
 }
