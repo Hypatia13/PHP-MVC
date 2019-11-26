@@ -4,7 +4,6 @@
 // An initialization file
 
 //Start a session if not started yet
-
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -13,3 +12,6 @@ if (!isset($_SESSION)) {
 require_once __DIR__ . '/../app/config/_env.php';
 
 require_once __DIR__ . '/../app/routing/routes.php';
+
+//Router is passed from routes.php
+new App\RouteDispatcher($router);
