@@ -13,5 +13,5 @@ require_once __DIR__ . '/../app/config/_env.php';
 
 require_once __DIR__ . '/../app/routing/routes.php';
 
-//Router is passed from routes.php
+//$router (an instance of AltoRouter) is passed from routes.php
 new App\RouteDispatcher($router);
