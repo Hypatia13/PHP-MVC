@@ -1,6 +1,6 @@
 <?php
 
-//This file is autoloads with every request (specified in composer.json)
+//This file is autoloaded with every request (specified in composer.json)
 
 //https://laravel.com/docs/5.1/blade
 

@@ -49,7 +49,7 @@ class RouteDispatcher
             //Show a custom 404.php message
             //include '404_test.php';
 
-            view(errors / 404);
+            view('errors/404');
         }
     }
 }
