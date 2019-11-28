@@ -8,6 +8,8 @@ class Database
 {
     public function __construct()
     {
+        //https://packagist.org/packages/illuminate/database
+
         $db = new Capsule();
         $db->addConnection([
 
