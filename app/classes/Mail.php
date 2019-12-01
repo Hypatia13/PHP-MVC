@@ -9,6 +9,8 @@
 namespace App\Classes;
 
 use PHPMailer\PHPMailer\PHPMailer as PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+
 
 class Mail
 {
@@ -33,7 +35,7 @@ class Mail
         $this->mail->SMTPAuth = true;
 
         //Either 'tls' or 'ssl', depending on my SMTP settings
-        $this->mail->SMTPSecure = 'tls';
+        $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 
         //Set the hostname of the mail server
         $this->mail->Host = getenv('SMTP_HOST');
@@ -50,7 +52,7 @@ class Mail
             // SMTP::DEBUG_CLIENT (1): Output messages sent by the client.
             // SMTP::DEBUG_SERVER (2): client & the server (the most useful setting).
 
-            $this->mail->SMTPDebug = 0;
+            $this->mail->SMTPDebug = SMTP::DEBUG_OFF;
         }
 
         //Auth info
@@ -92,9 +94,9 @@ class Mail
 
         //send the message, check for errors
         if (!$this->mail->send()) {
-            return 'Mailer Error: '. $this->mail->ErrorInfo;
+            echo 'Mailer Error: '. $this->mail->ErrorInfo;
         } else {
-            return 'Message sent!';
+            echo 'Message sent!';
         }
     }
 }
