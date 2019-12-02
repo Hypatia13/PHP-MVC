@@ -33,7 +33,7 @@ class ErrorHandler
                 'view' => 'errors',
                 'body' => $error
             ];
-        }
+        } ErrorHandler::emailAdmin($data)->outputFriendlyError();
     }
 
     //Show a generic error message to users in production
@@ -46,9 +46,11 @@ class ErrorHandler
     }
 
     //Send an email to admin about error in production
-    public function emailAdmin($data)
+    public static function emailAdmin($data)
     {
         $mail = new Mail();
         $mail->send($data);
+
+        return new static();
     }
 }
