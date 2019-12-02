@@ -1,6 +1,8 @@
 <?php
-// Create a new instance of AltoRouter
 // AltoRouter package -> router for PHP
+// http://altorouter.com/usage/mapping-routes.html
+
+// Create a new instance of AltoRouter
 
 $router = new AltoRouter();
 
@@ -10,4 +12,5 @@ $router = new AltoRouter();
 //Call a show() of IndexController when a homepage is accessed
 $router->map('GET', '/', 'App\Controllers\IndexController@show', 'home');
 
-// http://altorouter.com/usage/mapping-routes.html
+$router->map('GET', '/admin', 'App\Controllers\Admin\DashboardController@show', 'admin_dashboard');
+
