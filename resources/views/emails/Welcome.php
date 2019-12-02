@@ -8,16 +8,9 @@
     <title>Document</title>
 </head>
 <body>
+Hello, <?= $data ?>
+
+<p>Best regards </p>
 
 </body>
 </html>
-
-
-<?php
-/**
- * Created by PhpStorm.
- * User: erie
- * Date: 28/11/2019
- * Time: 21.43
- */
-

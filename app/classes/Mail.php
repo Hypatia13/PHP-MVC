@@ -8,9 +8,11 @@
 
 namespace App\Classes;
 
-use PHPMailer\PHPMailer\PHPMailer as PHPMailer;
+use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
+// https://github.com/PHPMailer/PHPMailer/blob/master/examples/gmail.phps
+// https://github.com/PHPMailer/PHPMailer/wiki/SMTP-Debugging
 
 class Mail
 {
@@ -22,9 +24,6 @@ class Mail
         $this->setUp();
     }
 
-    // https://github.com/PHPMailer/PHPMailer/blob/master/examples/gmail.phps
-    // https://github.com/PHPMailer/PHPMailer/wiki/SMTP-Debugging
-
     public function setUp()
     {
         //Tell PHPMailer to use SMTP
@@ -34,7 +33,7 @@ class Mail
         //Whether to use SMTP authentication
         $this->mail->SMTPAuth = true;
 
-        //Either 'tls' or 'ssl', depending on my SMTP settings
+        //Either 'tls' or 'ssl', depending on the SMTP settings
         $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 
         //Set the hostname of the mail server
@@ -67,6 +66,8 @@ class Mail
         //Sender's info
         //Set who the message is to be sent from
         $this->mail->From = getenv('ADMIN_EMAIL');
+        //EMAIL_USERNAME used instead of ADMIN_EMAIL -> Gmail in-built etting
+
         $this->mail->FromName = getenv('APP_NAME');
 
     }
@@ -79,24 +80,41 @@ class Mail
         $this->mail->Subject = $data['subject'];
 
         //One way of composing an email body
-        $body = '<!DOCTYPE html>
-            <html lang="en">
-            <head>
-                <meta charset="UTF-8">
-                <title>Title</title>
-            </head>
-            <body>
-            Email Body
-            </body>
-            </html>';
+        /*       $body = '<!DOCTYPE html>
+                   <html lang="en">
+                   <head>
+                       <meta charset="UTF-8">
+                       <title>Title</title>
+                   </head>
+                   <body>
+                   <p>Hello,</p>
+                   <p>It is a new Email from a localhost!</p>
+                   </body>
+                   </html>';
 
-        $this->mail->Body = $body;
+               $this->mail->Body = $body;
 
-        //send the message, check for errors
-        if (!$this->mail->send()) {
-            echo 'Mailer Error: '. $this->mail->ErrorInfo;
-        } else {
-            echo 'Message sent!';
-        }
+        */
+
+        //Using an external template as a Mail body
+        // $data['view'] -> a template to load, $data - data to pass to a view
+        $this->mail->Body = make($data['view'], array('data' => $data['body']));
+
+        return $this->mail->send();
+
+        /*   //send the message, check for errors
+           if (!$this->mail->send()) {
+               echo 'Mailer Error: ' . $this->mail->ErrorInfo;
+           } else {
+               echo 'Message sent!';
+           }*/
+
+        /*       try {
+           $this->mail->send();
+           echo 'Message sent!';
+       } catch (Exception $exception) {
+           //echo 'Mailer Error: ' . $this->mail->ErrorInfo;
+           echo $exception->errorMessage();
+       }*/
     }
 }
