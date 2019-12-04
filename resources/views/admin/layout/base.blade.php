@@ -8,19 +8,14 @@
     {{--Using @yield to add dynamic content--}}
     <title>Admin page - @yield('title')</title>
 
-    {{--Terry's line here is "css/all.css" -> how is this a path??? --}}
-   {{-- Your css files need to be in /public so that a browser can request them.
-    Like a /public/css folder--}}
+    {{-- Look for the file style.css in the folder css at the root level of my website
+    In Laravel the 'public' directory is a root level == your document root--}}
     <link rel="stylesheet" href="/css/all.css">
 </head>
 <body>
 
+{{--Sidebar--}}
 <div class="off-canvas position-left reveal-for-large" id="offCanvas" data-off-canvas>
-
- {{--   <!-- Close button -->
-    <button class="close-button" aria-label="Close menu" type="button" data-close>
-        <span aria-hidden="true">&times;</span>
-    </button>--}}
 
     <!-- Menu -->
     <ul class="vertical menu">
@@ -33,13 +28,24 @@
     </ul>
 
 </div>
+{{--Sidebar ends--}}
+
+{{--Main content starts--}}
 
 <div class="off-canvas-content" data-off-canvas-content>
+
+    <div class="title-bar">
+        <div class="title-bar-left">
+            <button class="menu-icon" type="button" data-open="offCanvas"></button>
+            {{--{{Blade syntax for echo}}--}}
+            <span class="title-bar-title">{{getenv('APP_NAME')}}</span>
+        </div>
+    </div>
+
     @yield('content')
 </div>
 
-
-{{--Terry's line here is "js/all.js" -> how is this a path??? --}}
 <script src="/js/all.js"></script>
+
 </body>
 </html>
