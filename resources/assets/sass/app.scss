@@ -1,5 +1,3 @@
-//WORKING!
-
 //Import Google font
 @import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
 
@@ -8,6 +6,9 @@
 
 //Import all base css of Motion-ui
 @import "../bower/vendor/motion-ui/src/motion-ui";
+
+//Import sidebar styles
+@import "admin/_nav.scss";
 
 // Include specific libraries
 
