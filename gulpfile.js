@@ -38,7 +38,8 @@ elixir(function (mix) {
     mix.scripts([
         bowerPath + '/jquery/dist/jquery.min.js',
         bowerPath + '/foundation-sites/dist/js/foundation.min.js',
-        bowerPath + '/slick-carousel/slick/slick.min.js'
+        bowerPath + '/slick-carousel/slick/slick.min.js',
+        'js/*.js'
     ], 'public/js/all.js',
         'resources/assets' // a source folder, where to look for all files
     )
