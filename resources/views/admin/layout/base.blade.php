@@ -11,9 +11,11 @@
     {{-- Look for the file style.css in the folder css at the root level of my website
     In Laravel the 'public' directory is a root level == your document root--}}
     <link rel="stylesheet" href="/css/all.css">
+    <script src="https://use.fontawesome.com/4988f9ad5c.js"></script>
+
 </head>
 <body>
-@include('admin.layout.includes.admin-sidebar')
+@include('includes.admin-sidebar')
 
 {{--Main content starts--}}
 

@@ -1,5 +1,10 @@
 <div class="off-canvas position-left reveal-for-large" id="offCanvas" data-off-canvas>
 
+    <h3>Welcome, Admin!</h3>
+    <div class="image-holder">
+        <img src="https://cdnb.artstation.com/p/assets/images/images/019/093/419/large/ruben-megido-crowley5.jpg?1561998831" alt="">
+        <p>Crowley</p>
+    </div>
     <!-- Menu -->
     <ul class="vertical menu">
         <li><a href="/admin"><i class="fa fa-tachometer fa-fw" aria-hidden="true"></i> Dashboard</a></li>
