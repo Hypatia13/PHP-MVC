@@ -19,12 +19,12 @@
 
 {{--Main content starts--}}
 
-<div class="off-canvas-content" data-off-canvas-content>
+<div class="off-canvas-content admin_title_bar" data-off-canvas-content>
 
     <div class="title-bar">
         <div class="title-bar-left">
-            <button class="menu-icon" type="button" data-open="offCanvas"></button>
-            {{--{{Blade syntax for echo}}--}}
+            <button class="menu-icon hide-for-large" type="button" data-open="offCanvas"></button>
+            {{--{{Blade syntax for echoing}}--}}
             <span class="title-bar-title">{{getenv('APP_NAME')}}</span>
         </div>
     </div>
