@@ -11,6 +11,11 @@ namespace App\Classes;
 
 class CSRFToken
 {
+    /**
+     * Generate a token
+     * @return mixed
+     * @throws \Exception
+     */
     public static function _token()
     {
         //If Session doesn't have a key 'token' -> generate a random string
@@ -21,6 +26,12 @@ class CSRFToken
         return Session::get('token');
     }
 
+    /**
+     * Verify a token
+     * @param $requestToken
+     * @return bool
+     * @throws \Exception
+     */
     public static function verifyCSRFToken($requestToken)
     {
         if (SESSION::has('token') && SESSION::get('token') === $requestToken) {
