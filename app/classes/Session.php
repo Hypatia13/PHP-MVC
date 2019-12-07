@@ -46,6 +46,8 @@ class Session
     {
         if ($name != '' && !empty($name)) {
             return isset($_SESSION[$name]) ? true : false;
+        } else {
+            throw new \Exception('Name is required');
         }
     }
 
@@ -55,6 +57,8 @@ class Session
      */
     public static function remove($name)
     {
-        unset($_SESSION[$name]);
+        if (self::has($name)) {
+            unset($_SESSION[$name]);
+        }
     }
 }
