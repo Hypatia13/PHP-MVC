@@ -13,7 +13,8 @@ class Session
 {
 
 
-    /** Create a session
+    /**
+     * Create a session (key)
      * @param $name
      * @param $value
      * @return mixed
@@ -22,13 +23,17 @@ class Session
     public static function add($name, $value)
     {
         if ($name != '' && !empty($name) && $value != '' && !empty($value)) {
+
+            //Create a new Session key called 'name'
             return $_SESSION[$name] = $value;
         } else {
             throw new \Exception('Name and value are required');
         }
     }
 
-    /** Get value from a session
+
+    /**
+     * Get value from a session
      * @param $name
      * @return mixed
      */
@@ -38,9 +43,11 @@ class Session
     }
 
 
-    /** Check if session exists
+    /**
+     * Check if key exists in session
      * @param $name
      * @return bool
+     * @throws \Exception
      */
     public static function has($name)
     {
@@ -52,7 +59,8 @@ class Session
     }
 
 
-    /** Remove a session
+    /**
+     * Remove a session
      * @param $name
      */
     public static function remove($name)
