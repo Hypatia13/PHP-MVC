@@ -17,11 +17,20 @@ class UploadFile
     protected $path;
 
 
+    /**
+     * Get the file name
+     * @return mixed
+     */
     public function getName()
     {
         return $this->filename;
     }
 
+    /**
+     * Set the file name
+     * @param $file
+     * @param string $name
+     */
     protected function setName($file, $name = "")
     {
         if($name === "")
@@ -36,17 +45,32 @@ class UploadFile
         $this->filename = "{$name}-{$hash}.{$ext}";
     }
 
+    /**
+     * Get file extension
+     * @param $file
+     * @return mixed
+     */
     protected function fileExtension($file)
     {
         return $this->extension = pathinfo($file, PATHINFO_EXTENSION);
     }
 
+    /**
+     * Validate file size
+     * @param $file
+     * @return bool
+     */
     public static function fileSize($file)
     {
         $fileObj = new static();
         return $file > $fileObj->max_filesize ? true : false;
     }
 
+    /**
+     * Validate file type
+     * @param $file
+     * @return bool
+     */
     public static function isImage($file)
     {
         $fileObj = new static();
@@ -58,11 +82,23 @@ class UploadFile
         return true;
     }
 
+    /**
+     * Get the path where a file was uploaded to
+     * @return mixed
+     */
     public function path()
     {
         return $this->path;
     }
 
+    /**
+     * Move the file to an intended location
+     * @param $temp_folder
+     * @param $folder
+     * @param $file
+     * @param string $new_filename
+     * @return UploadFile|null
+     */
     public static function move($temp_folder, $folder, $file, $new_filename = "")
     {
         $fileObj = new static();
