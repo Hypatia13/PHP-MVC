@@ -24,7 +24,8 @@ class UploadFile
 
     protected function setName($file, $name = "")
     {
-        if ($name == "") {
+        if($name === "")
+        {
             $name = pathinfo($file, PATHINFO_FILENAME);
         }
         $name = strtolower(str_replace(['_', ' '], '-', $name));
@@ -40,14 +41,16 @@ class UploadFile
         return $this->extension = pathinfo($file, PATHINFO_EXTENSION);
     }
 
-    public function fileSize($file)
+    public static function fileSize($file)
     {
-        return $file > $this->max_filesize ? true : false;
+        $fileObj = new static();
+        return $file > $fileObj->max_filesize ? true : false;
     }
 
-    public function isImage($file)
+    public static function isImage($file)
     {
-        $ext = $this->fileExtension($file);
+        $fileObj = new static();
+        $ext = $fileObj->fileExtension($file);
         $validExtension = array('jpg', 'jpeg', 'bmp', 'png', 'gif');
         if (!in_array(strtolower($ext), $validExtension)) {
             return false;
@@ -60,21 +63,21 @@ class UploadFile
         return $this->path;
     }
 
-    public function move($temp_folder, $folder, $file, $new_filename)
+    public static function move($temp_folder, $folder, $file, $new_filename = "")
     {
-        $ds = DIRECTORY_SEPARATOR; // A slash
-
-        $this->setName($file, $new_filename);
-        $file_name = $this->getName();
+        $fileObj = new static();
+        $fileObj->setName($file, $new_filename);
+        $file_name = $fileObj->getName();
 
         if (!is_dir($folder)) {
             mkdir($folder, 0777, true);
         }
 
-        $this->path = "{$folder}{$ds}{$file_name}";
-        $absolute_path = BASE_PATH . "{$ds}public{$ds}$this->path";
+        $ds = DIRECTORY_SEPARATOR; // A slash
+        $fileObj->path = "{$folder}{$ds}{$file_name}";
+        $absolute_path = BASE_PATH . "{$ds}public{$ds}$fileObj->path";
         if (move_uploaded_file($temp_folder, $absolute_path)) {
-            return $this; //Return an object to use method chaining
+            return $fileObj; //Return an object to use method chaining
         }
         return null;
     }
