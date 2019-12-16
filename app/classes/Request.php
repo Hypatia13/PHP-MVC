@@ -12,7 +12,7 @@ namespace App\Classes;
 class Request
 {
     /**
-     * Return all request data
+     * Return all requests
      * @param bool $is_array
      * @return mixed
      */
@@ -33,7 +33,8 @@ class Request
      * @param $key
      * @return mixed
      */
-    public static function get($key){
+    public static function get($key)
+    {
         $obj = new static();
         $data = $obj->all();
 
@@ -45,8 +46,33 @@ class Request
      * @param $key
      * @return bool
      */
-    public static function has($key){
+    public static function has($key)
+    {
+        // By passing a TRUE to a self::all, turned the result into an array
         return (array_key_exists($key, self::all(true)) ? true : false);
+    }
+
+    /**
+     * Get request data
+     * @param $key
+     * @param $value
+     * @return mixed
+     */
+    public static function old($key, $value)
+    {
+        $obj = new static();
+        $data = $obj->all();
+        return (isset($data->$key->$value)) ? $data->$key->$value : "";
+    }
+
+    /**
+     * Refresh all requests
+     */
+    public static function refresh()
+    {
+        $_GET = [];
+        $_POST = [];
+        $_FILES = [];
     }
 
 }
