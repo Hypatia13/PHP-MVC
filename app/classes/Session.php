@@ -12,7 +12,6 @@ namespace App\Classes;
 class Session
 {
 
-
     /**
      * Create a session (key)
      * @param $name

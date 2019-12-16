@@ -21,6 +21,7 @@ class CSRFToken
         //If Session doesn't have a key 'token' -> generate a random string
         if (!SESSION::has('token')) {
             $randomToken = base64_encode(openssl_random_pseudo_bytes(32));
+            //Add a new key to a session
             Session::add('token', $randomToken);
         }
         return Session::get('token');
